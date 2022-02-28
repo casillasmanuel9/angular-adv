@@ -1,6 +1,3 @@
-import { AuthModule } from './auth/auth.module';
-import { PagesModule } from './pages/pages.module';
-import { PagesComponent } from './pages/pages.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
