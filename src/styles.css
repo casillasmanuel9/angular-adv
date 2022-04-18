@@ -7,6 +7,13 @@
 }
 
 
-#themecolors .selector {
+#themecolors .selector, .cursor {
   cursor: pointer;
+}
+
+#btn-google {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
 }

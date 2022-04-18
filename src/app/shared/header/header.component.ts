@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { TokenService } from './../../services/token.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,11 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  constructor() { }
+  constructor(
+    private tokenService: TokenService
+  ) { }
 
-  ngOnInit(): void {
+  logout() {
+    this.tokenService.logout();
   }
 
 }
