@@ -1,5 +1,6 @@
 import { TokenService } from './../../services/token.service';
 import { Component } from '@angular/core';
+import { Usuario } from 'src/app/models/usuario.model';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +10,12 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  public usuario: Usuario;
   constructor(
     private tokenService: TokenService
-  ) { }
+  ) {
+    this.usuario = this.tokenService.usuario;
+  }
 
   logout() {
     this.tokenService.logout();

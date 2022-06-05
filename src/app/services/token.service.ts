@@ -1,3 +1,4 @@
+import { Usuario } from './../models/usuario.model';
 import { Router } from '@angular/router';
 import { tap, map, catchError, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -14,6 +15,7 @@ declare const gapi: any;
 export class TokenService {
 
   private auth2: any;
+  public usuario!: Usuario;
 
   constructor(
     private http: HttpClient,
@@ -38,14 +40,17 @@ export class TokenService {
 
   validarToken() {
     const token = localStorage.getItem('token') || '';
-    console.log(token);
     return this.http.get<ValidateToken>(`${ base_url }/login/renew`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
     }).pipe(
-      tap(({token}) => this.token = token),
-      map(() => true),
+      map(({token, usuario}) => {
+        const { nombre, email, img, google, role, uid } = usuario;
+        this.usuario = new Usuario(nombre, email, '', img, google, role, uid);
+        this.token = token;
+        return true;
+      }),
       catchError(() => of(false))
     )
   }
@@ -53,6 +58,10 @@ export class TokenService {
   get token() {
     const token = localStorage.getItem('token') || '';
     return token;
+  }
+
+  get usuarioId() {
+    return this.usuario.uid || '';
   }
 
   set token(token: string) {

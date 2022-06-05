@@ -17,3 +17,10 @@
   align-items: center;
   margin-bottom: 8px;
 }
+
+.img-avatar {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  padding: 24px;
+}
